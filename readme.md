@@ -4,7 +4,7 @@
 
 
 ## Description
-This solution was developed using Domain Driven Design (DDD), which focuses on developing an ubiquitous language and efficiently managing the resources in the business solution in collaboration with a domain expert.
+This solution was developed using Domain Driven Design (DDD), which focuses on developing a ubiquitous language and efficiently managing the resources in the business solution in collaboration with a domain expert.
 
 The main purpose of this reservation app is to provide the user and the hair salon with an easy way to manage reservations for any kind of service that the salon offers to its customers.
 
@@ -28,7 +28,7 @@ In the following image, you can see the solution space that I chose (bounded con
 
 ## Domain Model
 
-This final diagram shows the detailed domain model, where all the entities are related to their respective aggregae roots as well as their own behaviors and value objects. You can see that the relationship between the reservation aggregate root and the calendar aggregate root is a customer-supplier relationship because the reservation aggregate provides information to the calendar aggregate.
+This final diagram shows the detailed domain model, where all the entities are related to their respective aggregate roots as well as their own behaviors and value objects. You can see that the relationship between the reservation aggregate root and the calendar aggregate root is a customer-supplier relationship because the reservation aggregate provides information to the calendar aggregate.
 
 <img src="resources/Domain-Model.png" width="1441" alt="Domain Model">
 
@@ -41,6 +41,7 @@ Calendar aggregate:
 * AnnounceCustomerUseCase - This use case update "customerArrived" property that means that the customer has arrived to the appointment.
 * CancelAppointmentUseCase - This use case remove an appointment from the calendar.
 * ChangeAppointmentDateUseCase - This use case change the appointment date.
+* ChangeAppointmentStatusUseCase - This use case change the appointment status.
 * CreateCalendarUseCase - This use case creates an empty calendar to be filled with the appointments.
 * ScheduleAppointmentUseCase - This use case adds and appointment to a calendar.
 
@@ -49,9 +50,9 @@ Reservation aggregate:
 
 * ChangeCustomerCellUseCase - This use case changes the customer cell.
 * ChangeCustomerSuffixUseCase - This use case changes the customer suffix.
-* ChangeHairStylistUseCase - This use case changes the Hair Stylist to an specific reservation. 
+* ChangeHairStylistUseCase - This use case changes the Hair Stylist to a specific reservation. 
 * CreateReservationUseCase - This use case creates a reservation.
-* LeaveExperienceUseCase - This use case provides a rating and a feedback to an specific reservation.
+* LeaveExperienceUseCase - This use case provides a rating and a feedback to a specific reservation.
 
 <br>
 
@@ -59,6 +60,14 @@ Reservation aggregate:
 
 * ChangeReservationStatusUseCase - This use case changes the reservation status when the appointment status changes.
 * FulFillReservation - This use case update "isFulFilled" property that means that the reservation if fulfilled when the customer was announced.
+
+<br>
+
+## Coverage
+
+The image below shows that the coverage is 100%
+
+<img src="resources/coverage.png" width="628" alt="Big Picture">
 
 <br>
 
