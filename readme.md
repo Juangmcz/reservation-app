@@ -28,7 +28,7 @@ In the following image, you can see the solution space that I chose (bounded con
 
 ## Domain Model
 
-This final diagram shows the detailed domain model, where all the entities are related to their respective aggregate roots as well as their own behaviors and value objects. You can see that the relationship between the reservation aggregate root and the calendar aggregate root is a customer-supplier relationship because the reservation aggregate provides information to the calendar aggregate.
+This final diagram shows the detailed domain model, where all the entities are related to their respective aggregate roots as well as their own behaviors and value objects. 
 
 <img src="resources/Domain-Model.png" width="1441" alt="Domain Model">
 
