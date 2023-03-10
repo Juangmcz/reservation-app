@@ -64,4 +64,7 @@ public class Calendar extends AggregateRoot<CalendarId> {
         appendChange(new AppointmentDateChanged(appointmentId, date)).apply();
     }
 
+    public void ChangeAppointmentStatus(String appointmentId, String reservationId, String status){
+        appendChange(new AppointmentStatusChanged(appointmentId,reservationId, status)).apply();
+    }
 }

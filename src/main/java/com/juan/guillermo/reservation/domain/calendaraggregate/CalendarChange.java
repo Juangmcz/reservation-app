@@ -46,5 +46,12 @@ public class CalendarChange extends EventChange {
                     .findFirst().orElseThrow();
             appointment.ChangeDate(event.getDate());
         });
+
+        apply((AppointmentStatusChanged event) -> {
+            Appointment appointment = calendar.appointments.stream()
+                    .filter(foundAppointment -> foundAppointment.identity().value().equals(event.getAppointmentId()))
+                    .findFirst().orElseThrow();
+            appointment.ChangeDate(event.getStatus());
+        });
     }
 }

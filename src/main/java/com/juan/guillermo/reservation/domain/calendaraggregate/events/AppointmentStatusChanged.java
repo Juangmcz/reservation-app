@@ -8,13 +8,15 @@ import lombok.Setter;
 @Setter
 public class AppointmentStatusChanged extends DomainEvent {
 
+    private String appointmentId;
     private String reservationId;
     private String status;
 
     public AppointmentStatusChanged(){ super("munoz.juan.appointmentStatusChanged"); }
 
-    public AppointmentStatusChanged(String reservationId, String status) {
+    public AppointmentStatusChanged(String appointmentId, String reservationId, String status) {
         super("munoz.juan.appointmentStatusChanged");
+        this.appointmentId = appointmentId;
         this.reservationId = reservationId;
         this.status = status;
     }

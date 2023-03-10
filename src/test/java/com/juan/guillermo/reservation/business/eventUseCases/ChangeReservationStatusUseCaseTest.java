@@ -47,7 +47,7 @@ class ChangeReservationStatusUseCaseTest {
         reservationCreated.setAggregateRootId("reservationId");
         mockedEvents.add(reservationCreated);
 
-        AppointmentStatusChanged appointmentStatusChanged = new AppointmentStatusChanged("reservationId", "Your reservation is taking place");
+        AppointmentStatusChanged appointmentStatusChanged = new AppointmentStatusChanged("appointmentId","reservationId", "Your reservation is taking place");
 
 
         Mockito.when(eventsRepository.findByAggregatedRootId(ArgumentMatchers.any(String.class)))

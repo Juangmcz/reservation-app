@@ -9,13 +9,16 @@ import lombok.Setter;
 public class ChangeAppointmentStatusCommand extends Command {
 
     private String calendarId;
+
+    private String appointmentId;
     private String reservationId;
     private String status;
 
     public ChangeAppointmentStatusCommand(){}
 
-    public ChangeAppointmentStatusCommand(String calendarId, String reservationId, String status) {
+    public ChangeAppointmentStatusCommand(String calendarId, String appointmentId, String reservationId, String status) {
         this.calendarId = calendarId;
+        this.appointmentId = appointmentId;
         this.reservationId = reservationId;
         this.status = status;
     }
