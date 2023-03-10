@@ -10,9 +10,9 @@ public class Detail extends Entity<DetailId> {
     private LastUpdated lastUpdated;
     private Comment comment;
 
-    public Detail(DetailId detailId, LastUpdated lastUpdated, Comment comment) {
+    public Detail(DetailId detailId, Comment comment) {
         super(detailId);
-        this.lastUpdated = lastUpdated;
+        this.lastUpdated = new LastUpdated();
         this.comment = comment;
     }
 

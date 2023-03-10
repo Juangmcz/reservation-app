@@ -6,17 +6,17 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateCalendarCommand extends Command {
+public class ChangeAppointmentDateCommand extends Command {
 
     private String calendarId;
+    private String appointmentId;
     private String date;
-    private int appointmentLimit;
 
-    public CreateCalendarCommand(){}
+    public ChangeAppointmentDateCommand() {}
 
-    public CreateCalendarCommand(String calendarId, String date, int appointmentLimit) {
+    public ChangeAppointmentDateCommand(String calendarId, String appointmentId, String date) {
         this.calendarId = calendarId;
+        this.appointmentId = appointmentId;
         this.date = date;
-        this.appointmentLimit = appointmentLimit;
     }
 }

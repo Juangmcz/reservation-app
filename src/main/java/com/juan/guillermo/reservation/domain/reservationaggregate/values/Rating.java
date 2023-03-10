@@ -2,16 +2,16 @@ package com.juan.guillermo.reservation.domain.reservationaggregate.values;
 
 import com.juan.guillermo.reservation.generic.ValueObject;
 
-public class Rating implements ValueObject<String> {
+public class Rating implements ValueObject<Double> {
 
-    private final String value;
+    private final double value;
 
-    public Rating(String value) {
+    public Rating(double value) {
         this.value = value;
     }
 
     @Override
-    public String value() {
+    public Double value() {
         return value;
     }
 

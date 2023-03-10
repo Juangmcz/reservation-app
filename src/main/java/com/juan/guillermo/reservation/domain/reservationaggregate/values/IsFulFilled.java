@@ -1,12 +1,12 @@
-package com.juan.guillermo.reservation.domain.calendaraggregate.values;
+package com.juan.guillermo.reservation.domain.reservationaggregate.values;
 
 import com.juan.guillermo.reservation.generic.ValueObject;
 
-public class CustomerArrived implements ValueObject<Boolean> {
+public class IsFulFilled implements ValueObject<Boolean> {
 
     private Boolean value;
 
-    public CustomerArrived(Boolean value) {
+    public IsFulFilled(Boolean value) {
         this.value = value;
     }
 
@@ -14,5 +14,4 @@ public class CustomerArrived implements ValueObject<Boolean> {
     public Boolean value() {
         return value;
     }
-
 }

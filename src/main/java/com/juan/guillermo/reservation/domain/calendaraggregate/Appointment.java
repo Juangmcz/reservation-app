@@ -16,14 +16,14 @@ public class Appointment extends Entity<AppointmentId> {
     private Status status;
     private CustomerArrived customerArrived;
 
-    public Appointment(AppointmentId appointmentId, ReservationId reservationId, Detail detail, Zone zone, Date date, Status status, CustomerArrived customerArrived) {
+    public Appointment(AppointmentId appointmentId, ReservationId reservationId, Detail detail, Zone zone, Date date) {
         super(appointmentId);
         this.reservationId = reservationId;
         this.detail = detail;
         this.zone = zone;
         this.date = date;
-        this.status = status;
-        this.customerArrived = customerArrived;
+        this.status = new Status("Active");
+        this.customerArrived = new CustomerArrived(false);
     }
 
     public ReservationId reservationId() {
@@ -48,6 +48,14 @@ public class Appointment extends Entity<AppointmentId> {
 
     public CustomerArrived customerArrived() {
         return customerArrived;
+    }
+
+    public void CustomerHasArrived() {
+        this.customerArrived = new CustomerArrived(true);
+    }
+
+    public void ChangeDate(String date) {
+        this.date = new Date(date);
     }
 
 }

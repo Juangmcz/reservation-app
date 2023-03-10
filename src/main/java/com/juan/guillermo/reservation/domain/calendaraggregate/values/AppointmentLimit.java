@@ -2,17 +2,16 @@ package com.juan.guillermo.reservation.domain.calendaraggregate.values;
 
 import com.juan.guillermo.reservation.generic.ValueObject;
 
-public class CustomerArrived implements ValueObject<Boolean> {
+public class AppointmentLimit implements ValueObject<Integer> {
 
-    private Boolean value;
+    private final int value;
 
-    public CustomerArrived(Boolean value) {
+    public AppointmentLimit(int value) {
         this.value = value;
     }
 
     @Override
-    public Boolean value() {
+    public Integer value() {
         return value;
     }
-
 }

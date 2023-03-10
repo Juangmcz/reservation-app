@@ -9,9 +9,9 @@ public class Experience extends Entity<ExperienceId> {
     private Rating rating;
     private FeedBack feedBack;
 
-    public Experience(ExperienceId experienceId, LastUpdated lastUpdated, Rating rating, FeedBack feedBack) {
+    public Experience(ExperienceId experienceId, Rating rating, FeedBack feedBack) {
         super(experienceId);
-        this.lastUpdated = lastUpdated;
+        this.lastUpdated = new LastUpdated();
         this.rating = rating;
         this.feedBack = feedBack;
     }
@@ -27,4 +27,5 @@ public class Experience extends Entity<ExperienceId> {
     public FeedBack feedBack() {
         return feedBack;
     }
+
 }

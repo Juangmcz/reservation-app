@@ -2,16 +2,18 @@ package com.juan.guillermo.reservation.domain.calendaraggregate.values;
 
 import com.juan.guillermo.reservation.generic.ValueObject;
 
-public class LastUpdated implements ValueObject<String> {
+import java.time.LocalDate;
 
-    private final String value;
+public class LastUpdated implements ValueObject<LocalDate> {
 
-    public LastUpdated(String value) {
-        this.value = value;
+    private final LocalDate value;
+
+    public LastUpdated() {
+        this.value = LocalDate.now();
     }
 
     @Override
-    public String value() {
+    public LocalDate value() {
         return value;
     }
 

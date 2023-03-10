@@ -4,7 +4,7 @@ import com.juan.guillermo.reservation.generic.ValueObject;
 
 public class Type implements ValueObject<String> {
 
-    private final String value;
+    private String value;
 
     public Type(String value) {
         this.value = value;

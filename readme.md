@@ -1,5 +1,7 @@
+# Sofka U - Domain Driven Design Final Challenge
 
-# Hair Lab Salon - Sofka U Domain Driven Design Final Challenge.
+## Hair Lab Salon - reservation-app
+
 
 ## Description
 This solution was developed using Domain Driven Design (DDD), which focuses on developing an ubiquitous language and efficiently managing the resources in the business solution in collaboration with a domain expert.
@@ -8,7 +10,7 @@ The main purpose of this reservation app is to provide the user and the hair sal
 
 <br>
 
-## Big Picture - Domain & Subdomains
+## Big Picture
 
 The image below shows the domain and the specific subdomains as well. In this case, I chose the Reception subdomain as the core because I think the experience that you have when you go to a hair salon is determinant of whether you keep the service or leave for another. Therefore, I implemented the reservation-app that belongs to the reception problem space (a subdomain), and I also proposed different solution spaces (bounded contexts) for the other subdomains.
 

@@ -27,4 +27,12 @@ public class Customer extends Entity<CustomerId> {
     public Suffix suffix() {
         return suffix;
     }
+
+    public void ChangeCell(String cell) {
+        this.cell = new Cell(cell);
+    }
+
+    public void ChangeSuffix(String suffix) {
+        this.suffix = new Suffix(suffix);
+    }
 }

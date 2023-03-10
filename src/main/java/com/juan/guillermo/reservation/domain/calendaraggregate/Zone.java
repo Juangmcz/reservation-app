@@ -12,10 +12,10 @@ public class Zone extends Entity<ZoneId> {
     private IsAvailable isAvailable;
     private Type type;
 
-    public Zone(ZoneId zoneId, Name name, IsAvailable isAvailable, Type type) {
+    public Zone(ZoneId zoneId, Name name, Type type) {
         super(zoneId);
         this.name = name;
-        this.isAvailable = isAvailable;
+        this.isAvailable = new IsAvailable(false);
         this.type = type;
     }
 
