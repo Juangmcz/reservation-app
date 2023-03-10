@@ -50,7 +50,7 @@ Reservation aggregate:
 
 * ChangeCustomerCellUseCase - This use case changes the customer cell.
 * ChangeCustomerSuffixUseCase - This use case changes the customer suffix.
-* ChangeHairStylistUseCase - This use case changes the Hair Stylist to a specific reservation. 
+* ChangeHairStylistUseCase - This use case changes the assigned Hair Stylist to a specific reservation. 
 * CreateReservationUseCase - This use case creates a reservation.
 * LeaveExperienceUseCase - This use case provides a rating and a feedback to a specific reservation.
 
@@ -59,7 +59,7 @@ Reservation aggregate:
 ## Event Driven Use Cases
 
 * ChangeReservationStatusUseCase - This use case changes the reservation status when the appointment status changes.
-* FulFillReservation - This use case update "isFulFilled" property that means that the reservation if fulfilled when the customer was announced.
+* FulFillReservationUseCase - This use case update "isFulFilled" property that means that the reservation if fulfilled when the customer was announced.
 
 <br>
 
