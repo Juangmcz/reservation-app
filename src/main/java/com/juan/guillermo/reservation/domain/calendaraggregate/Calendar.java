@@ -8,6 +8,7 @@ import com.juan.guillermo.reservation.generic.AggregateRoot;
 import com.juan.guillermo.reservation.generic.DomainEvent;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Calendar extends AggregateRoot<CalendarId> {
 
@@ -33,6 +34,8 @@ public class Calendar extends AggregateRoot<CalendarId> {
     }
 
     public void AnnounceCustomer(String reservationId, String appointmentId) {
+        Objects.requireNonNull(reservationId);
+        Objects.requireNonNull(appointmentId);
         appendChange(new CustomerAnnounced(reservationId, appointmentId)).apply();
     }
 
@@ -45,7 +48,16 @@ public class Calendar extends AggregateRoot<CalendarId> {
             String zoneId,
             String name,
             String type
-    ) { appendChange(new AppointmentScheduled(
+    ) {
+        Objects.requireNonNull(appointmentId);
+        Objects.requireNonNull(reservationId);
+        Objects.requireNonNull(detailId);
+        Objects.requireNonNull(date);
+        Objects.requireNonNull(comment);
+        Objects.requireNonNull(zoneId);
+        Objects.requireNonNull(name);
+        Objects.requireNonNull(type);
+        appendChange(new AppointmentScheduled(
             appointmentId,
             reservationId,
             detailId,
@@ -57,14 +69,20 @@ public class Calendar extends AggregateRoot<CalendarId> {
             )).apply(); }
 
     public void CancelAppointment(String appointmentId){
+        Objects.requireNonNull(appointmentId);
         appendChange(new AppointmentCancelled(appointmentId)).apply();
     }
 
     public void ChangeAppointmentDate(String appointmentId, String date){
+        Objects.requireNonNull(appointmentId);
+        Objects.requireNonNull(date);
         appendChange(new AppointmentDateChanged(appointmentId, date)).apply();
     }
 
     public void ChangeAppointmentStatus(String appointmentId, String reservationId, String status){
+        Objects.requireNonNull(appointmentId);
+        Objects.requireNonNull(reservationId);
+        Objects.requireNonNull(status);
         appendChange(new AppointmentStatusChanged(appointmentId,reservationId, status)).apply();
     }
 }

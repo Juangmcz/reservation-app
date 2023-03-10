@@ -80,22 +80,31 @@ public class Reservation extends AggregateRoot<ReservationId> {
     }
 
     public void ChangeCustomerCell(String customerId, String cell){
+        Objects.requireNonNull(customerId);
+        Objects.requireNonNull(cell);
         appendChange(new CustomerCellChanged(customerId, cell)).apply();
     }
 
     public void ChangeCustomerSuffix(String customerId, String suffix){
+        Objects.requireNonNull(customerId);
+        Objects.requireNonNull(suffix);
         appendChange(new CustomerSuffixChanged(customerId, suffix)).apply();
     }
 
     public void LeaveExperience(String experienceId, double rating, String feedback){
+        Objects.requireNonNull(experienceId);
+        Objects.requireNonNull(feedback);
         appendChange(new ExperienceLeaved(experienceId, rating, feedback)).apply();
     }
 
     public void ChangeStatus(String reservationId, String status){
+        Objects.requireNonNull(reservationId);
+        Objects.requireNonNull(status);
         appendChange(new ReservationStatusChanged(reservationId, status)).apply();
     }
 
     public void FulFillReservation(String reservationId){
+        Objects.requireNonNull(reservationId);
         appendChange(new ReservationFullFilled(reservationId)).apply();
     }
 }
