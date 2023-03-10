@@ -33,6 +33,12 @@ class ScheduleAppointmentUseCaseTest {
     @Test
     void successfulScenario() {
 
+        List<DomainEvent> mockedEvents = new ArrayList<>();
+
+        CalendarCreated calendarCreated = new CalendarCreated("3/10/2023", 10);
+        calendarCreated.setAggregateRootId("calendarId");
+        mockedEvents.add(calendarCreated);
+
         ScheduleAppointmentCommand scheduleAppointmentCommand = new ScheduleAppointmentCommand(
                 "calendarId",
                 "appointmentId",
@@ -45,11 +51,8 @@ class ScheduleAppointmentUseCaseTest {
                 "Brush"
         );
 
-        List<DomainEvent> calendarEvents = new ArrayList<>();
-        calendarEvents.add(new CalendarCreated());
-
         Mockito.when(eventsRepository.findByAggregatedRootId(ArgumentMatchers.any(String.class)))
-                .thenReturn(calendarEvents);
+                .thenReturn(mockedEvents);
 
         Mockito.when(eventsRepository.saveEvent(ArgumentMatchers.any(DomainEvent.class)))
                 .thenAnswer( invocationOnMock -> {
@@ -58,11 +61,8 @@ class ScheduleAppointmentUseCaseTest {
 
         List<DomainEvent> domainEventList = scheduleAppointmentUseCase.apply(scheduleAppointmentCommand);
 
-        Assertions.assertEquals(2, domainEventList.size());
-        Assertions.assertTrue(domainEventList.size() > 1);
-        Assertions.assertEquals("munoz.juan.appointmentScheduled", domainEventList.get(1).type);
-        Assertions.assertEquals("AppointmentId",
-                ((AppointmentScheduled) (domainEventList.get(domainEventList.size() - 1))).getAppointmentId());
-
+        Assertions.assertEquals(1, domainEventList.size());
+        Assertions.assertEquals("munoz.juan.appointmentScheduled", domainEventList.get(0).type);
+        Assertions.assertEquals("appointmentId", ((AppointmentScheduled) domainEventList.get(0)).getAppointmentId());
     }
 }

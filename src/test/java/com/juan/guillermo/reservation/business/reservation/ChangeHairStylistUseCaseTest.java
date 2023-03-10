@@ -30,6 +30,8 @@ class ChangeHairStylistUseCaseTest {
     @Test
     void successfulScenario(){
 
+        List<DomainEvent> mockedEvents = new ArrayList<>();
+
         ReservationCreated reservationCreated = new ReservationCreated(
                 "03/08/2023",
                 "N/A",
@@ -42,9 +44,8 @@ class ChangeHairStylistUseCaseTest {
                 "3125859475",
                 "Long Hair"
         );
-
-        List<DomainEvent> mocksEvents = new ArrayList<>();
-        mocksEvents.add(reservationCreated);
+        reservationCreated.setAggregateRootId("reservationId");
+        mockedEvents.add(reservationCreated);
 
         ChangeHairStylistCommand changeHairStylistCommand = new ChangeHairStylistCommand(
                 "reservationId",
@@ -55,17 +56,19 @@ class ChangeHairStylistUseCaseTest {
                 "Short Hair"
         );
 
-        Mockito.when(eventsRepository.findByAggregatedRootId("reservationId"))
+        Mockito.when(eventsRepository.findByAggregatedRootId(ArgumentMatchers.any(String.class)))
                 .thenAnswer(invocationOnMock -> {
-                    return mocksEvents;
+                    return mockedEvents;
                 });
 
-        Mockito.when(eventsRepository.saveEvent(ArgumentMatchers.any(HairStylistChanged.class)))
+        Mockito.when(eventsRepository.saveEvent(ArgumentMatchers.any(DomainEvent.class)))
                 .thenAnswer(invocationOnMock -> invocationOnMock.getArgument(0));
 
         List<DomainEvent> domainEventList = changeHairStylistUseCase.apply(changeHairStylistCommand);
 
         Assertions.assertEquals(1, domainEventList.size());
         Assertions.assertEquals("munoz.juan.hairStylistChanged", domainEventList.get(0).type);
+        Assertions.assertEquals("Carlos", ((HairStylistChanged)domainEventList.get(0)).getHairStylistFirstName());
+        Assertions.assertEquals("Short Hair", ((HairStylistChanged)domainEventList.get(0)).getSpeciality());
     }
 }

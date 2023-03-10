@@ -3,6 +3,7 @@ package com.juan.guillermo.reservation.business.reservation;
 
 import com.juan.guillermo.reservation.business.commons.EventsRepository;
 import com.juan.guillermo.reservation.domain.reservationaggregate.commands.LeaveExperienceCommand;
+import com.juan.guillermo.reservation.domain.reservationaggregate.events.ExperienceLeaved;
 import com.juan.guillermo.reservation.domain.reservationaggregate.events.ReservationCreated;
 import com.juan.guillermo.reservation.generic.DomainEvent;
 import org.junit.jupiter.api.Assertions;
@@ -62,5 +63,7 @@ class LeaveExperienceUseCaseTest {
 
         Assertions.assertEquals(1, domainEventList.size());
         Assertions.assertEquals("munoz.juan.experienceLeaved", domainEventList.get(0).type);
+        Assertions.assertEquals("It was such a nice experience.",((ExperienceLeaved)domainEventList.get(0)).getFeedback());
+        Assertions.assertEquals(4.3,((ExperienceLeaved)domainEventList.get(0)).getRating());
     }
 }

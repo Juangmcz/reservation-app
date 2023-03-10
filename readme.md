@@ -58,7 +58,7 @@ Reservation aggregate:
 ## Event Driven Use Cases
 
 * ChangeReservationStatusUseCase - This use case changes the reservation status when the appointment status changes.
-* ReleaseZoneUseCase - This use case changes the availability zone when the reservation receives a experience.
+* FulFillReservation - This use case update "isFulFilled" property that means that the reservation if fulfilled when the customer was announced.
 
 <br>
 

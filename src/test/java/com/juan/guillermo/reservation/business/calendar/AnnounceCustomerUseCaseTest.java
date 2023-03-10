@@ -2,6 +2,7 @@ package com.juan.guillermo.reservation.business.calendar;
 
 import com.juan.guillermo.reservation.business.commons.EventsRepository;
 import com.juan.guillermo.reservation.domain.calendaraggregate.commands.AnnounceCustomerCommand;
+import com.juan.guillermo.reservation.domain.calendaraggregate.commands.CreateCalendarCommand;
 import com.juan.guillermo.reservation.domain.calendaraggregate.commands.ScheduleAppointmentCommand;
 import com.juan.guillermo.reservation.domain.calendaraggregate.events.AppointmentScheduled;
 import com.juan.guillermo.reservation.domain.calendaraggregate.events.CalendarCreated;
@@ -31,8 +32,11 @@ class AnnounceCustomerUseCaseTest {
     @Test
     void successfulScenario(){
 
-        List<DomainEvent> calendarEvents = new ArrayList<>();
-        calendarEvents.add(new CalendarCreated());
+        List<DomainEvent> mockedEvents = new ArrayList<>();
+
+        CalendarCreated calendarCreated = new CalendarCreated("3/10/2023", 10);
+        calendarCreated.setAggregateRootId("calendarId");
+        mockedEvents.add(calendarCreated);
 
         AppointmentScheduled appointmentScheduled = new AppointmentScheduled(
                 "appointmentId",
@@ -44,13 +48,12 @@ class AnnounceCustomerUseCaseTest {
                 "Brushing Room",
                 "Brush"
         );
-        appointmentScheduled.setAggregateRootId("calendarId");
-        calendarEvents.add(appointmentScheduled);
+        mockedEvents.add(appointmentScheduled);
 
         AnnounceCustomerCommand announceCustomerCommand = new AnnounceCustomerCommand("calendarId","reservationId","appointmentId");
 
         Mockito.when(eventsRepository.findByAggregatedRootId(ArgumentMatchers.any(String.class)))
-                .thenReturn(calendarEvents);
+                .thenReturn(mockedEvents);
 
         Mockito.when(eventsRepository.saveEvent(ArgumentMatchers.any(DomainEvent.class)))
                 .thenAnswer( invocationOnMock -> {
@@ -59,8 +62,8 @@ class AnnounceCustomerUseCaseTest {
 
         List<DomainEvent> domainEventList = announceCustomerUseCase.apply(announceCustomerCommand);
 
-        Assertions.assertEquals(2, domainEventList.size());
-        Assertions.assertTrue(domainEventList.size() > 1);
-        Assertions.assertEquals("munoz.juan.customerAnnounced", domainEventList.get(1).type);
+        Assertions.assertEquals(1, domainEventList.size());
+        Assertions.assertEquals("calendarId", domainEventList.get(0).aggregateRootId());
+        Assertions.assertEquals("munoz.juan.customerAnnounced", domainEventList.get(0).type);
     }
 }

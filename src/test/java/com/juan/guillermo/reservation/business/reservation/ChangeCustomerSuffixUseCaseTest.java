@@ -3,6 +3,7 @@ package com.juan.guillermo.reservation.business.reservation;
 import com.juan.guillermo.reservation.business.commons.EventsRepository;
 import com.juan.guillermo.reservation.domain.reservationaggregate.commands.ChangeCustomerCellCommand;
 import com.juan.guillermo.reservation.domain.reservationaggregate.commands.ChangeCustomerSuffixCommand;
+import com.juan.guillermo.reservation.domain.reservationaggregate.events.CustomerSuffixChanged;
 import com.juan.guillermo.reservation.domain.reservationaggregate.events.ReservationCreated;
 import com.juan.guillermo.reservation.generic.DomainEvent;
 import org.junit.jupiter.api.Assertions;
@@ -63,5 +64,6 @@ class ChangeCustomerSuffixUseCaseTest {
 
         Assertions.assertEquals(1, domainEventList.size());
         Assertions.assertEquals("munoz.juan.customerSuffixChanged", domainEventList.get(0).type);
+        Assertions.assertEquals("Sr.", ((CustomerSuffixChanged)domainEventList.get(0)).getSuffix());
     }
 }

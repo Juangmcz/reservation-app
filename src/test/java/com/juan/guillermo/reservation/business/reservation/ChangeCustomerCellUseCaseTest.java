@@ -3,6 +3,7 @@ package com.juan.guillermo.reservation.business.reservation;
 
 import com.juan.guillermo.reservation.business.commons.EventsRepository;
 import com.juan.guillermo.reservation.domain.reservationaggregate.commands.ChangeCustomerCellCommand;
+import com.juan.guillermo.reservation.domain.reservationaggregate.events.CustomerCellChanged;
 import com.juan.guillermo.reservation.domain.reservationaggregate.events.ReservationCreated;
 import com.juan.guillermo.reservation.generic.DomainEvent;
 import org.junit.jupiter.api.Assertions;
@@ -62,5 +63,6 @@ class ChangeCustomerCellUseCaseTest {
 
         Assertions.assertEquals(1, domainEventList.size());
         Assertions.assertEquals("munoz.juan.customerCellChanged", domainEventList.get(0).type);
+        Assertions.assertEquals("3002027568", ((CustomerCellChanged)domainEventList.get(0)).getCell());
     }
 }
